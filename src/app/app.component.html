@@ -343,9 +343,9 @@
   <h4>Lis of all companies</h4>
   <form appearance="fill">
    
-    <select>
+    <select (change)="onChange($event)" name="sel2">
       <option>Select Company</option>
-      <option *ngFor="let company of companies" [value]="company.CompanyName">{{company.CompanyName}}</option>
+      <option *ngFor="let company of companies" [value]="company.CompanyCode">{{company.CompanyName}}</option>
     </select>
   </form>
   
@@ -359,6 +359,50 @@
      
   </div>
 </div>
+<div *ngIf="SelectedCompanyDetails" >
+<div class="detials-block">
+  <div>
+    <div class="ind-comp">
+     <div class="ind-set">
+       <label class="label">Company Code </label> 
+     <span class="label">
+       {{SelectedCompanyDetails.CompanyCode}}
+     </span>
+     </div>
+    </div>
+    <div class="ind-comp">
+   <div class="ind-set">
+     <label class="label">Company Name </label> 
+     <span class="label">
+       {{SelectedCompanyDetails.CompanyName}}
+     </span>
+   </div>
+    </div>
+   </div>
+</div>
+<div class="stock-tbl-content">
+  <table class="stock-table">
+    <tbody>
+      <tr>
+        <th>
+          Stock Price
+        </th>
+        <th>
+          Date
+        </th>
+      </tr>
+      <tr *ngFor="let stock of SelectedCompanyStocks">
+<td>
+{{stock.StockPrice}}
+</td>
+<td>
+  {{stock.StockDate | date :'dd-MM-yyyy'}}
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
   </div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -369,4 +413,6 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<router-outlet></router-outlet>
+<router-outlet>
+
+</router-outlet>
